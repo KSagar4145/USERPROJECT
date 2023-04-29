@@ -1,0 +1,47 @@
+package com.product.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.product.model.Product;
+import com.product.services.ProductService;
+
+import net.bytebuddy.asm.MemberSubstitution.Substitution.Chain.Step.Resolution;
+
+@RestController
+public class ProductController {
+	@Autowired
+	private ProductService productService;
+
+	@PostMapping("/saveProduct")
+	public ResponseEntity<?> saveProduct(@RequestBody Product product) {
+		return ResponseEntity.status(HttpStatus.OK).body(productService.saveProduct(product));
+	}
+
+	@GetMapping("/")
+	public ResponseEntity<?> getAllProduct() {
+		return ResponseEntity.status(HttpStatus.OK).body(productService.getAllProduct());
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<?> getProductById(@PathVariable Integer id) {
+		return ResponseEntity.status(HttpStatus.OK).body(productService.getProductById(id));
+	}
+
+	@GetMapping("/deleteProduct/{id}")
+	public ResponseEntity<?> deleteProduct(@PathVariable Integer id) {
+		return ResponseEntity.status(HttpStatus.OK).body(productService.deleteProduct(id));
+	}
+	
+	@PostMapping("/editProduct")
+	public ResponseEntity<?> editProduct(@RequestBody Product product) {
+		return ResponseEntity.status(HttpStatus.OK).body(productService.saveProduct(product));
+	}
+
+}

@@ -1,0 +1,17 @@
+package com.product.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.product.model.Product;
+
+public interface ProductService {
+	public Product saveProduct(Product product);
+
+	public List<Product> getAllProduct();
+
+	public Optional<Product> getProductById(Integer id);
+
+	public void deleteProduct(Integer id);
+
+}
